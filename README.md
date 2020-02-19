@@ -1,2 +1,2 @@
-# drl-sandbox
+# DRL Sandbox
 Sandbox for Deep Reinforcement Learning in PyTorch.
