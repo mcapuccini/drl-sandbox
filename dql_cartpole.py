@@ -203,8 +203,9 @@ def play_one(env, agent, device):
 if __name__ == '__main__':
     
     # Init
-    N=400
+    N=300
     TARGET_UPDATE=10
+    RUN_AVG_SAMPLES=100
     device=torch.device("cpu")
     env = gym.make('CartPole-v0').unwrapped
     agent = DQLAgent(env, device)
@@ -218,7 +219,7 @@ if __name__ == '__main__':
         if i % TARGET_UPDATE == 0:
             agent.update_target_net()
         # Print episode stats
-        running_avg = episode_durations[max(0, i-100):(i+1)].mean()
+        running_avg = episode_durations[max(0, i-RUN_AVG_SAMPLES):(i+1)].mean()
         print('episode:', i+1, 'duration:', episode_durations[i], 'run avg:', running_avg)
 
     # Plot durations
@@ -226,7 +227,7 @@ if __name__ == '__main__':
     # Plot running avg
     running_avg = np.empty(N)
     for t in range(N):
-        running_avg[t] = episode_durations[max(0, t-100):(t+1)].mean()
+        running_avg[t] = episode_durations[max(0, t-RUN_AVG_SAMPLES):(t+1)].mean()
     plt.plot(running_avg)
     plt.savefig('plot/dql_cartpole.png')
 
