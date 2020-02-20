@@ -1,0 +1,17 @@
+{
+	"name": "dlr-sandbox",
+	"context": "..",
+	"dockerFile": "Dockerfile",
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"python.pythonPath": "/opt/conda/bin/python3",
+		"python.linting.enabled": true
+	},
+	"remoteUser": "vscode",
+	"extensions": [
+		"ms-python.python",
+		"ms-azuretools.vscode-docker"
+	],
+	"containerEnv": { "DISPLAY": ":1" },
+	"mounts": ["source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=default"]
+}

@@ -1,0 +1,6 @@
+__pycache__
+xvfb.log
+openaigym.*
+.DS_store
+*.png
+*.mp4
