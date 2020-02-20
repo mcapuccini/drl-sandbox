@@ -187,6 +187,8 @@ def play_one(env, agent, device):
         if not done:
             state_prime = current_screen - last_screen
         else:
+            if (t+1) < 200: # if pole fell penalize
+                reward = torch.tensor([-200.], device=device)
             state_prime = None
         # Store trainsition in replay buffer
         agent.replay_buffer.push(state, action, reward, state_prime)
@@ -198,7 +200,6 @@ def play_one(env, agent, device):
         if done:
             return t + 1
     
-
 if __name__ == '__main__':
     
     # Init
